@@ -10,19 +10,25 @@ def create():
 
     if nome.strip() == "" or sobrenome.strip() == "":
         messagebox.showerror("Gerenciador de Cadastros - Erro de usuário", "A senha ou site não pode ter um valor vazio passado")
-    
-    row_id = database.fetch_last_id() 
     database.insert(nome,sobrenome)
+    row_id = database.fetch_last_id() 
     treeview.insert("", "end", values=(row_id+1,nome,sobrenome))
     last_input.delete(0,END)
     name_input.delete(0,END)
 
-def update():
-    print("Atualizando um elemento!")
 def delete():
     print("Deletando um elemento!")
-def read():
-    print("Gerando um elemento!")
+
+def update():
+    selected = treeview.focus()
+    temp = treeview.item(selected, "values")
+    print(temp)
+    try:
+        functions.Update_Window.crete_window(str(temp[1]),str(temp[2]))
+    except(IndexError):
+        messagebox.showerror("Data Error","You need to select the data you want to modify in the treeview vision")
+
+
 
 
 
@@ -54,15 +60,14 @@ scroll.grid(column=6, row=0,rowspan=5,sticky=(N,S))
 
 ## Buttons
 create_button = ttk.Button(registration_frame,text="Create", command=lambda:create())
-read_button = ttk.Button(registration_frame,text="Read", command=lambda:read())
 update_button = ttk.Button(window,text="Update", command=lambda:update())
 delete_button = ttk.Button(window,text="Delete", command=lambda:delete())
 
 ## Input's and Labels
 name_label = ttk.Label(registration_frame, text="Name: ")
-name_input = ttk.Entry(registration_frame, textvariable=nameentry)
+name_input = ttk.Entry(registration_frame, textvariable=nameentry,cursor="xterm")
 last_label = ttk.Label(registration_frame, text="Surname: ",)
-last_input = ttk.Entry(registration_frame, textvariable=last_nameentry)
+last_input = ttk.Entry(registration_frame, textvariable=last_nameentry,cursor="xterm")
 
 # SQL search
 
@@ -75,7 +80,6 @@ database_image.grid(column=3,row=0,columnspan=3,rowspan=5,sticky=(N,E,S,W))
 
 ##Buttons
 create_button.grid(column=0,row=5,sticky=(W,S))
-read_button.grid(column=1,row=5,sticky=(E,S))
 update_button.grid(column=3,row=5, sticky=(W,S))
 delete_button.grid(column=4,row=5, sticky=(E,S))
 

@@ -6,6 +6,10 @@ DB_NAME = "db.sqlite3"
 DB_FILE = ROOT_DIR / DB_NAME
 TABLE_NAME = "informacao_clientes"
 
+def restart_database():
+    connection = sqlite3.connect(DB_FILE)
+    cursor = connection.cursor()
+    cursor.execute(f"UPDATE sqlite_sequence SET seq=1 WHERE {TABLE_NAME}")
 
 
 def create(NEW_TABLE_NAME):
@@ -40,7 +44,10 @@ def fetch_last_id():
     last_id = id.fetchone()[0]
     connection.commit()
     connection.close()
-
     return last_id
+    
 
 
+
+if __name__ == "__database__":
+    restart_database()
