@@ -34,14 +34,15 @@ class Update_Window(tk.Tk):
         self.surname_entry = ttk.Entry(self.label_frame, textvariable=new_surname)
         self.div = ttk.Separator(self.label_frame, orient=tk.VERTICAL,)
 
-        self.overview = ttk.Separator(self.label_frame, orient=tk.HORIZONTAL)
-
+        self.overview_top = ttk.Separator(self.label_frame, orient=tk.HORIZONTAL)
+        self.overview_bottom = ttk.Separator(self.label_frame, orient=tk.HORIZONTAL)
 
         self.show_old_name = ttk.Label(self.label_frame, text=self.name, foreground="red")
         self.show_new_name = ttk.Label(self.label_frame, textvariable=new_name, foreground="green")
         self.show_old_surname = ttk.Label(self.label_frame, text=self.surname, foreground="red")
         self.show_new_surname = ttk.Label(self.label_frame, textvariable=new_surname, foreground="green")
 
+        self.modify_button = ttk.Button(self.label_frame, text="Modify")
 
         self.frame.grid(column=0, row=0,columnspan=5, rowspan=5,sticky=(tk.N,tk.W,tk.E,tk.S))
         self.label_frame.grid(column=0,row=0,columnspan=5,rowspan=5,sticky=(tk.N,tk.W,tk.E,tk.S))
@@ -50,7 +51,8 @@ class Update_Window(tk.Tk):
         self.div.grid(column = 2, row=0, rowspan=2, sticky=(tk.N,tk.S),padx=5)
         self.surname_label.grid(column=3,row=0,columnspan=2,sticky=(tk.N,tk.W))
         self.surname_entry.grid(column=3,row=1,columnspan=2,sticky=(tk.N,tk.W))
-        self.overview.grid(column=0,row=2,columnspan=5,sticky=(tk.W,tk.E),pady=5)
+        
+        self.overview_top.grid(column=0,row=2,columnspan=5,sticky=(tk.W,tk.E),pady=5)
         
         self.show_old_name.grid(column=0,row=3,sticky=(tk.W,tk.N))
         self.show_new_name.grid(column=0,row=4)
@@ -58,7 +60,9 @@ class Update_Window(tk.Tk):
         self.show_old_surname.grid(column=3,row=3,sticky=(tk.W,tk.N))
         self.show_new_surname.grid(column=3,row=4)
 
+        self.overview_bottom.grid(column=0,row=5,columnspan=5, sticky=(tk.W,tk.E),pady=5)
 
+        self.modify_button.grid(column=0,row=6,sticky=(tk.W))
 
 
     def crete_window(name,surname):
