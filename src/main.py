@@ -4,6 +4,12 @@ from tkinter import messagebox
 import database
 import functions
 
+def load_treeview_data(display_element=None):   
+    database_data = database.fetch_data()
+    for data in database_data:
+        display_element.insert("","end",values=(data))
+
+
 def create():
     nome = name_input.get()
     sobrenome = last_input.get()
@@ -22,15 +28,22 @@ def delete():
 def update():
     selected = treeview.focus()
     temp = treeview.item(selected, "values")
-    print(temp)
     try:
-        functions.Update_Window.crete_window(str(temp[1]),str(temp[2]))
+        functions.Update_Window.create_window(str(temp[0]),str(temp[1]),str(temp[2]))
+        load_treeview_data(treeview)
+
     except(IndexError):
         messagebox.showerror("Data Error","You need to select the data you want to modify in the treeview vision")
 
 
 
 
+
+
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__
+        super()
 
 
 
@@ -115,6 +128,6 @@ treeview.rowconfigure(0, weight=1)
 if __name__ == "__main__":
     database.create("informacao_clientes")
     
-    functions.load_treeview_data(treeview)
+    load_treeview_data(treeview)
     
     root.mainloop()
