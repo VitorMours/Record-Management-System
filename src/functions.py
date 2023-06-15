@@ -1,3 +1,4 @@
+import main
 import database
 import tkinter as tk
 from tkinter import messagebox
@@ -65,7 +66,7 @@ class Update_Window(tk.Tk):
     def _update_value(self):
         
         database.update_value(self.user_id,self.name_entry.get(),self.surname_entry.get())
-        super().destroy()
         
+        super().destroy()
 
 

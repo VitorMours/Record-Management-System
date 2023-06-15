@@ -22,7 +22,7 @@ class App(tk.Tk):
         #Frames
         self.main_frame = ttk.Frame(self, borderwidth=5, width=825, height=400)
         self.database_image = ttk.Frame(self.main_frame, borderwidth=10, width=600, height=400)
-        self.registration_frame = ttk.Frame(self.main_frame,borderwidth=5,width=250, height=400,relief="sunken")
+        self.registration_frame = ttk.Frame(self.main_frame,borderwidth=5,width=250, height=400)
         
 
         # Input Widgets and Elements
@@ -109,10 +109,10 @@ class App(tk.Tk):
         temp = self.treeview.item(selected, "values")
         try:
             functions.Update_Window.create_window(str(temp[0]),str(temp[1]),str(temp[2]))
+            self.load_treeview_data()
 
         except(IndexError):
             messagebox.showerror("Data Error","You need to select the data you want to modify in the treeview vision")
-        self.load_treeview_data()
 
 
 
