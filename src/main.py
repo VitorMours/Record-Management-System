@@ -109,11 +109,10 @@ class App(tk.Tk):
         temp = self.treeview.item(selected, "values")
         try:
             functions.Update_Window.create_window(str(temp[0]),str(temp[1]),str(temp[2]))
-            self.load_treeview_data(treeview)
 
         except(IndexError):
             messagebox.showerror("Data Error","You need to select the data you want to modify in the treeview vision")
-
+        self.load_treeview_data()
 
 
 
