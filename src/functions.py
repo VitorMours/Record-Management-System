@@ -1,6 +1,7 @@
 import main
 import database
 import tkinter as tk
+from tkinter import font
 from tkinter import messagebox
 from tkinter import ttk
 
@@ -11,6 +12,7 @@ from tkinter import ttk
 class Update_Window(tk.Tk):
     def __init__(self,user_id,name,surname):
         super().__init__(user_id,name,surname)
+        # Window Information
         self.user_id = user_id
         self.name = name
         self.surname = surname
@@ -21,6 +23,12 @@ class Update_Window(tk.Tk):
         self.new_name = tk.StringVar()
         self.new_surname = tk.StringVar()
 
+        self.DefaultFont = font.nametofont("TkDefaultFont")
+        self.TextFont = font.Font(family="@Microsoft JhengHei UI", weight=font.BOLD)
+        self.DefaultFont.configure(family="@Microsoft JhengHei UI", weight=font.BOLD)
+
+
+        # Window Elements
         self.frame = ttk.Frame(self, border=5, borderwidth=20,width=340,height=240)
         self.label_frame = ttk.Labelframe(self.frame,text=" Data Changing ",padding=(10,10,10,10),width=480,height=360)
     
@@ -40,6 +48,8 @@ class Update_Window(tk.Tk):
 
         self.modify_button = ttk.Button(self.label_frame, text="Modify", command=lambda:self._update_value())
 
+
+        #Window Positioning
         self.frame.grid(column=0, row=0,columnspan=5, rowspan=5,sticky=(tk.N,tk.W,tk.E,tk.S))
         self.label_frame.grid(column=0,row=0,columnspan=5,rowspan=5,sticky=(tk.N,tk.W,tk.E,tk.S))
         self.name_label.grid(column=0,row=0,columnspan=2,sticky=(tk.N,tk.W))
@@ -60,13 +70,22 @@ class Update_Window(tk.Tk):
 
         self.modify_button.grid(column=0,row=6,sticky=(tk.W))
 
+        #Window Bidings
+        self.bind("<Return>",self._update_value)
+
+
+
     def create_window(user_id, name,surname):
             update_window = Update_Window(user_id, name,surname)
 
-    def _update_value(self):
-        
-        database.update_value(self.user_id,self.name_entry.get(),self.surname_entry.get())
-        
-        super().destroy()
+    def _update_value(self, event=None):
+        new_name = self.name_entry.get()
+        new_surname = self.surname_entry.get()
+
+        if new_name.strip() == "" or new_surname.strip() == "":
+            messagebox.showerror("Information Manager - Data Error","You cannot modify a value to empty string value on database")
+        else:        
+            database.update_value(self.user_id,self.name_entry.get(),self.surname_entry.get())
+            self.destroy()
 
 

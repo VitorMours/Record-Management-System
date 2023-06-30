@@ -57,6 +57,16 @@ def update_value(user_id,new_name,new_surname):
     connection.commit()
     connection.close()
 
+def delete_value(user_id, user_name):
+    print(f"Id: {user_id}\nNome: {user_name}")
+
+    connection = sqlite3.connect(DB_FILE)
+    cursor = connection.cursor()
+    cursor.execute(f"DELETE FROM {TABLE_NAME} WHERE id={user_id}")
+    connection.commit()
+    connection.close()
+
+
 
 
 if __name__ == "__database__":
