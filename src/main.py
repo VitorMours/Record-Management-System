@@ -132,6 +132,7 @@ class App(tk.Tk):
 
         except(IndexError):
             messagebox.showerror("Information Manager - Data Error","You need to select the data you want to modify in the treeview vision")
+        
         finally:
             self.treeview.delete(*self.treeview.get_children())
             self._load_treeview_data()

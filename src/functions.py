@@ -86,6 +86,6 @@ class Update_Window(tk.Tk):
             messagebox.showerror("Information Manager - Data Error","You cannot modify a value to empty string value on database")
         else:        
             database.update_value(self.user_id,self.name_entry.get(),self.surname_entry.get())
-            self.destroy()
+            self.destroy()  
 
 
