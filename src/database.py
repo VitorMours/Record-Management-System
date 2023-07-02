@@ -45,7 +45,27 @@ def fetch_last_id():
     connection.commit()
     connection.close()
     return last_id
-    
+
+
+def update_value(user_id,new_name,new_surname):
+    print(user_id)
+    print(new_name)
+    print(new_surname)
+    connection = sqlite3.connect(DB_FILE)
+    cursor = connection.cursor()
+    cursor.execute(f"UPDATE {TABLE_NAME} set nome='{new_name}', sobrenome='{new_surname}' WHERE id={user_id}")
+    connection.commit()
+    connection.close()
+
+def delete_value(user_id, user_name):
+    print(f"Id: {user_id}\nNome: {user_name}")
+
+    connection = sqlite3.connect(DB_FILE)
+    cursor = connection.cursor()
+    cursor.execute(f"DELETE FROM {TABLE_NAME} WHERE id={user_id}")
+    connection.commit()
+    connection.close()
+
 
 
 
