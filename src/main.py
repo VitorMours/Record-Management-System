@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 from tkinter import ttk, font
 from tkinter import messagebox
 
@@ -16,10 +16,10 @@ class App(tk.Tk):
         super().__init__()
         self.modified_list = []
         # Window Atributes
-        self.image = Image.open(r"images\lockicon_120641.ico")
-        self.icon = ImageTk.PhotoImage(self.image)
-        self.iconphoto(True,self.icon)
-        self.iconbitmap("images\lockicon_120641.ico")
+#        self.image = Image.open(r"images\lockicon_120641.ico")
+#        self.icon = ImageTk.PhotoImage(self.image)
+#        self.iconphoto(True,self.icon)
+#        self.iconbitmap("images\lockicon_120641.ico")
         self.title(title)
         self.minsize(825,400)
 

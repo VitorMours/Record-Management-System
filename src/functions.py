@@ -19,7 +19,7 @@ class Update_Window(tk.Tk):
         self.minsize(330,210)
         self.resizable(False, False)
         self.title("Value Updating Window")
-        self.iconbitmap("images\lockicon_120641.ico")
+#        self.iconbitmap("images\lockicon_120641.ico")
         self.new_name = tk.StringVar()
         self.new_surname = tk.StringVar()
 
