@@ -11,7 +11,7 @@ from tkinter import ttk
 
 class Update_Window(tk.Tk):
     def __init__(self,user_id,name,surname):
-        super().__init__(user_id,name,surname)
+        super().__init__()
         # Window Information
         self.user_id = user_id
         self.name = name
