@@ -63,7 +63,7 @@ The program have the purpose of simulate a commmercial system, so, the features 
     To create a record inside our RMS, we can use the defined espace to input the data and click on the button "Create". But, to facilitate this, we can also use the Enter button to automatically create the new register, without the necessity to remove the hands of the keyboard
 </details>
 
-![](assets/video/Create%20Demonstration.gif)
+![](assets/video/CreateDemonstration.gif)
 ---
 
 <details>
@@ -77,7 +77,7 @@ The program have the purpose of simulate a commmercial system, so, the features 
     The update command can also be used by the bind <strong> Ctrl+U </strong>. To use this command, you first need to select the record you want to modify, and after this, a window gonna to pop-up, and you can insert the new values in each designed entry, after clicking in the modify, they're going to be updated in the database, and simultaneously in the treeview visualization     
 </details>
 
-![](assets/video/Update%20Demonstration.gif)
+![](assets/video/UpdateDemonstration.gif)
 ---
 
 <details>
@@ -85,7 +85,7 @@ The program have the purpose of simulate a commmercial system, so, the features 
     To delete a register from the database, the only need is to select the record, and click in the delete button, or click the <strong>Delete</strong> keyboard 
 </details>
 
-![](assets/video/Delete%20Demonstration.gif)
+![](assets/video/DeleteDemonstration.gif)
 
 
 
