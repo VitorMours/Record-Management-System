@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk, font
 from tkinter import messagebox
 
+from modules import menu, notebook
 import database
 import functions
 
@@ -22,7 +23,8 @@ class App(tk.Tk):
 #        self.iconbitmap("images\lockicon_120641.ico")
         self.title(title)
         self.minsize(825,400)
-
+        self.menubar = menu.Menu(self)
+        self['menu'] = self.menubar
         #Font
         self.DefaultFont = font.nametofont("TkDefaultFont")
         self.TextFont = font.Font(family="@Microsoft JhengHei UI", weight=font.BOLD)
@@ -47,23 +49,18 @@ class App(tk.Tk):
         self.delete_button = ttk.Button(self.main_frame,text="Delete", command=lambda:self._delete())
 
         # Normal and Scrolling Treeview Settings
-        self.treeview = ttk.Treeview(self.database_image, columns=("index","Name","Surname"),show="headings")
-        self.treeview.heading("index",text="ID")
-        self.treeview.heading("Name",text="Name")
-        self.treeview.heading("Surname",text="Surname")
-        self.treeview.column("index", width=40, stretch=tk.NO)
-
+        self.notebook = notebook.Notebook(self.database_image)
+        
+        # TODO Get this scroll script and do inside the notebook
         # Treeview Scroll
-        self.scroll = ttk.Scrollbar(self.database_image, orient="vertical", command=self.treeview.yview)
+        #self.scroll = ttk.Scrollbar(self.database_image, orient="vertical", command=self.treeview.yview)
 
         # Griding Elements
         ## Frames and Big Elements
         self.main_frame.grid(column = 0, row=0,sticky=(tk.N,tk.E,tk.S,tk.W))
         self.registration_frame.grid(column=0, row=0,columnspan=2,rowspan=5,sticky=(tk.N,tk.W,tk.S,tk.E))
         self.database_image.grid(column=3,row=0,columnspan=3,rowspan=5,sticky=(tk.N,tk.E,tk.S,tk.W))
-        self.treeview.grid(column=0,row=0,sticky=(tk.N,tk.W,tk.E,tk.S))
-        self.treeview.configure(yscrollcommand=self.scroll.set)
-        self.scroll.grid(column=6, row=0,rowspan=6,sticky=(tk.N,tk.S))
+        self.notebook.grid(column=0,row=0,sticky=(tk.N,tk.W,tk.E,tk.S))
 
         ## Labels and Entries
         self.name_label.grid(column=0,row=1, sticky=(tk.W))
@@ -87,9 +84,9 @@ class App(tk.Tk):
         #--------------------------------------------------
         self.database_image.columnconfigure(0,weight=3)
         self.database_image.rowconfigure(0,weight=1)
-        self.treeview.columnconfigure(0, weight=3)
-        self.treeview.rowconfigure(0, weight=1)
-        self.treeview.configure(yscrollcommand=self.scroll.set)
+        self.notebook.columnconfigure(0, weight=3)
+        self.notebook.rowconfigure(0, weight=1)
+        #self.treeview.configure(yscrollcommand=self.scroll.set)
 
         # Widget Binds
         
@@ -102,11 +99,6 @@ class App(tk.Tk):
         self.treeview.tag_configure("pair", background="#FFFFFF")
         self.treeview.tag_configure("odd", background="#F0F0F0")
 
-    def _load_treeview_data(self):   
-        database_data = database.fetch_data()
-        for data in database_data:
-            self.treeview.insert("","end",values=(data))
-        self.aply_color()
 
     def _create(self, event=None):
         nome = self.name_input.get()
@@ -192,6 +184,5 @@ if __name__ == "__main__":
     database.create("informacao_clientes")
 
     app = App("Information Manager v1.0")
-    app._load_treeview_data()
     app.main_window_function(True)
     app.mainloop()
