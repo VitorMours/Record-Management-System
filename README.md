@@ -88,7 +88,11 @@ The program have the purpose of simulate a commmercial system, so, the features 
 ![](assets/video/DeleteDemonstration.gif)
 
 
-
+# Restarting database
+to restart the database, you can run the command
+```sh
+python3 src/database.py
+```
 
 
 
