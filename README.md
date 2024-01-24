@@ -71,7 +71,7 @@ The program have the purpose of simulate a commmercial system, so, the features 
     By the nature of the project, we can read the database data directly on the interface of the program, by the treeview visualization provided
 </details>
 
----
+
 <details>
     <summary><strong>Update</strong></summary>
     The update command can also be used by the bind <strong> Ctrl+U </strong>. To use this command, you first need to select the record you want to modify, and after this, a window gonna to pop-up, and you can insert the new values in each designed entry, after clicking in the modify, they're going to be updated in the database, and simultaneously in the treeview visualization     
